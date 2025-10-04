@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Buscador desde enlace</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="wrap">
+  <h1>🔎 Buscar en un enlace científico</h1>
+  <p class="muted">Pega un enlace. El texto se procesa en tu función de Vercel y vuelve “limpio”.</p>
+  <form id="loadForm" class="bar">
+    <input id="url" type="url" placeholder="https://sitio-cientifico/articulo..." required />
+    <button class="primary" type="submit">Cargar</button>
+  </form>
+
+  <form id="searchForm" class="bar">
+    <input id="q" type="search" placeholder='Ej.: "aprendizaje automático" OR robótica -infantil motor*' />
+    <button class="primary" type="submit">Buscar</button>
+  </form>
+
+  <details class="help">
+    <summary>¿Cómo buscar?</summary>
+    <ul>
+      <li><b>Frase exacta</b>: <code>"red neuronal"</code></li>
+      <li><b>OR</b>: <code>robot OR dron</code></li>
+      <li><b>Excluir</b>: <code>sensor -temperatura</code></li>
+      <li><b>Comodín</b>: <code>motor*</code> (motor, motores…)</li>
+      <li>Por defecto es AND entre palabras.</li>
+    </ul>
+    <label><input type="checkbox" id="caseSensitive" /> Mayúsc/minúsc</label>
+    <label><input type="checkbox" id="wholeWord" /> Palabra completa</label>
+  </details>
+  <div id="docMeta" class="muted small"></div>
+  <div id="status" class="muted small"></div>
+</header>
+
+<main class="wrap grid">
+  <section class="results">
+    <h2>Resultados</h2>
+    <div id="hits"></div>
+    <div id="pager" class="pager hidden">
+      <button id="prev">Anterior</button>
+      <span id="pageLabel"></span>
+      <button id="next">Siguiente</button>
+    </div>
+  </section>
+
+  <aside class="panel">
+    <h3>Documento</h3>
+    <div id="titleBox" class="card"></div>
+    <h3>Vista rápida (párrafos)</h3>
+    <ol id="outline" class="ol"></ol>
+  </aside>
+</main>
+
+<footer class="wrap foot">
+  <small>Respeta siempre los Términos de uso del sitio de origen y su <code>robots.txt</code>.</small>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
